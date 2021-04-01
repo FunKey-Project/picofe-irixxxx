@@ -162,8 +162,14 @@ void text_out16(int x, int y, const char *texto, ...)
 }
 
 /* draws in 6x8 font, might multiply size by integer */
+//#define ALLOW_TEXT_OUT
 static void smalltext_out16_(int x, int y, const char *texto, int color)
 {
+
+#ifndef ALLOW_TEXT_OUT
+	return;
+#endif //ALLOW_TEXT_OUT
+
 	unsigned char  *src;
 	unsigned short *dst;
 	int multiplier = me_sfont_w / 6;
@@ -202,6 +208,11 @@ static void smalltext_out16_(int x, int y, const char *texto, int color)
 
 static void smalltext_out16(int x, int y, const char *texto, int color)
 {
+
+#ifndef ALLOW_TEXT_OUT
+	return;
+#endif //ALLOW_TEXT_OUT
+
 	char buffer[128];
 	int maxw = (g_menuscreen_w - x) / me_sfont_w;
 

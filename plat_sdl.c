@@ -206,8 +206,12 @@ int plat_sdl_init(void)
 
   info = SDL_GetVideoInfo();
   if (info != NULL) {
-    fs_w = info->current_w;
-    fs_h = info->current_h;
+    /*fs_w = info->current_w;
+    fs_h = info->current_h;*/
+
+    // Force 320x240 on FunKey S
+    fs_w = 320;
+    fs_h = 240;
     printf("plat_sdl: using %dx%d as fullscreen resolution\n", fs_w, fs_h);
   }
 
